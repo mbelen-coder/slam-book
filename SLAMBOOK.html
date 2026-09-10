@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>♡ Our Memory Book ♡</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #5f4b55;
+
+            background:
+                radial-gradient(circle at 10% 20%, #ffe1eb 0, transparent 25%),
+                radial-gradient(circle at 90% 10%, #e9ddff 0, transparent 25%),
+                radial-gradient(circle at 80% 90%, #dff5f1 0, transparent 25%),
+                #fff8f6;
+        }
+
+        header {
+            text-align: center;
+            padding: 55px 20px 60px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(249, 215, 226, 0.95),
+                    rgba(232, 219, 247, 0.95)
+                );
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "♡";
+            position: absolute;
+            font-size: 120px;
+            color: rgba(255,255,255,0.35);
+            left: 8%;
+            top: 5px;
+            transform: rotate(-15deg);
+        }
+
+        header::after {
+            content: "♡";
+            position: absolute;
+            font-size: 100px;
+            color: rgba(255,255,255,0.35);
+            right: 10%;
+            bottom: -20px;
+            transform: rotate(15deg);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 48px;
+            color: #765466;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            margin: 15px 0 0;
+            color: #806d75;
+            font-size: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 17px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(103, 77, 90, 0.08);
+        }
+
+        nav button {
+            background: transparent;
+            border: none;
+            color: #735965;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 9px;
+            padding: 9px 13px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #fff0f5;
+            color: #c27691;
+            transform: translateY(-2px);
+        }
+
+        nav button.active {
+            background: #f7dce6;
+            color: #925d72;
+            box-shadow: 0 4px 10px rgba(194, 118, 145, 0.15);
+        }
+
+        .content-box {
+            width: 86%;
+            max-width: 1050px;
+            min-height: 430px;
+            margin: 75px auto;
+            padding: 55px;
+            background: rgba(255, 255, 255, 0.93);
+            border-radius: 30px;
+            box-shadow:
+                0 15px 40px rgba(91, 66, 78, 0.10),
+                0 2px 8px rgba(91, 66, 78, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-box::before {
+            content: "✿";
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 35px;
+            color: #f0c5d3;
+            transform: rotate(-15deg);
+        }
+
+        .content-box::after {
+            content: "♡";
+            position: absolute;
+            right: 30px;
+            bottom: 15px;
+            font-size: 40px;
+            color: #ead1ec;
+        }
+
+        .content {
+            display: none;
+            animation: fadeIn 0.45s ease;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content h2 {
+            text-align: center;
+            color: #80576b;
+            font-size: 30px;
+            margin-top: 5px;
+            margin-bottom: 30px;
+        }
+
+        .content h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            margin: 12px auto 0;
+            background: #e4b6c7;
+            border-radius: 10px;
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .home-message {
+            text-align: center;
+            max-width: 780px;
+            margin: auto;
+        }
+
+        .home-message .big-heart {
+            font-size: 45px;
+            margin-bottom: 10px;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+        .home-message p {
+            margin: 22px 0;
+        }
+
+        .quote {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 15px 25px;
+            background: #fff3f7;
+            border-radius: 25px;
+            color: #9a687b;
+            font-style: italic;
+        }
+
+        .memory-intro {
+            text-align: center;
+            color: #927b84;
+            margin-bottom: 30px;
+        }
+
+        .memory-card {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            background: linear-gradient(
+                135deg,
+                #fff7f9,
+                #fffafb
+            );
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 22px;
+            border: 1px solid #f3e2e8;
+            box-shadow:
+                0 8px 20px rgba(100, 75, 85, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 14px 30px rgba(100, 75, 85, 0.12);
+        }
+
+        .memory-card img {
+            width: 260px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 17px;
+            box-shadow:
+                0 6px 15px rgba(80, 60, 70, 0.15);
+            flex-shrink: 0;
+        }
+
+        .memory-info {
+            text-align: left;
+        }
+
+        .memory-info .date {
+            color: #b28797;
+            font-size: 13px;
+        }
+
+        .memory-info h3 {
+            color: #936175;
+            font-size: 21px;
+            margin: 9px 0;
+        }
+
+        .memory-info p {
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* MEMORY 3 PHOTO COLLAGE */
+
+        .memory-card.special-memory {
+            display: block;
+        }
+
+        .memory-card.special-memory .memory-info {
+            margin-top: 20px;
+        }
+
+        .memory-collage {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .memory-collage img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 13px;
+            box-shadow:
+                0 5px 12px rgba(80, 60, 70, 0.12);
+        }
+
+        .memory-collage img:nth-child(1) {
+            grid-column: span 2;
+        }
+
+        .memory-collage img:nth-child(2) {
+            grid-column: span 2;
+        }
+
+        .memory-collage img:nth-child(3) {
+            grid-column: span 2;
+        }
+
+        .memory-collage img:nth-child(4) {
+            grid-column: span 3;
+        }
+
+        .memory-collage img:nth-child(5) {
+            grid-column: span 3;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            padding: 10px;
+        }
+
+        .photo {
+            background: white;
+            padding: 10px 10px 18px;
+            box-shadow:
+                0 8px 18px rgba(80, 60, 70, 0.12);
+            transition: 0.35s ease;
+            cursor: pointer;
+        }
+
+        .photo:nth-child(odd) {
+            transform: rotate(-2deg);
+        }
+
+        .photo:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .photo:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow:
+                0 14px 28px rgba(80, 60, 70, 0.16);
+            z-index: 2;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
+
+        .photo p {
+            text-align: center;
+            font-family: cursive;
+            font-size: 14px;
+            margin: 13px 0 0;
+            color: #77636b;
+        }
+
+        /* VIDEO */
+
+        .video-card {
+            background: white;
+            padding: 10px 10px 18px;
+            box-shadow:
+                0 8px 18px rgba(80, 60, 70, 0.12);
+            border-radius: 5px;
+            transition: 0.35s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 14px 28px rgba(80, 60, 70, 0.16);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+            border-radius: 2px;
+        }
+
+        .video-card p {
+            text-align: center;
+            font-family: cursive;
+            font-size: 14px;
+            margin: 13px 0 0;
+            color: #77636b;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 32, 40, 0.88);
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.4);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-lightbox:hover {
+            color: #f7cbd9;
+        }
+
+        .timeline {
+            max-width: 750px;
+            margin: auto;
+            border-left: 3px dashed #dfb5c4;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            background: #fff7f9;
+            padding: 22px;
+            margin: 25px 0;
+            border-radius: 18px;
+            position: relative;
+            box-shadow:
+                0 6px 15px rgba(90, 70, 80, 0.06);
+        }
+
+        .timeline-item::before {
+            content: "♡";
+            position: absolute;
+            left: -49px;
+            top: 20px;
+            width: 30px;
+            height: 30px;
+            background: #f4d9e3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #986378;
+        }
+
+        .timeline-item h3 {
+            color: #956378;
+            margin-top: 0;
+        }
+
+        .letter {
+            max-width: 750px;
+            margin: auto;
+            padding: 35px;
+            background:
+                linear-gradient(
+                    #fffdf7,
+                    #fffaf3
+                );
+            border-radius: 12px;
+            box-shadow:
+                0 7px 20px rgba(90, 70, 70, 0.08);
+            line-height: 2;
+            font-family: Georgia, serif;
+            position: relative;
+        }
+
+        .letter::before {
+            content: "💌";
+            display: block;
+            text-align: center;
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            background: #eadde3;
+            color: #79636c;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 40px 15px;
+            }
+
+            header h1 {
+                font-size: 34px;
+            }
+
+            nav button {
+                margin: 3px;
+                padding: 7px 9px;
+                font-size: 13px;
+            }
+
+            .content-box {
+                width: 92%;
+                padding: 35px 22px;
+                margin: 45px auto;
+            }
+
+            .memory-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .memory-card img {
+                width: 100%;
+                height: 230px;
+            }
+
+            .memory-info {
+                text-align: center;
+            }
+
+            .memory-collage {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .memory-collage img {
+                grid-column: span 1 !important;
+                height: 160px;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .content h2 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>♡ Our Memory Book ♡</h1>
+
+        <p>
+            A little place for all the memories we never want to forget.
+        </p>
+
+    </header>
+
+
+    <nav>
+
+        <button
+            onclick="showContent('home', this)"
+            class="active">
+            Home
+        </button>
+
+        <button
+            onclick="showContent('memories', this)">
+            Memories
+        </button>
+
+        <button
+            onclick="showContent('photos', this)">
+            Photos
+        </button>
+
+        <button
+            onclick="showContent('story', this)">
+            Our Story
+        </button>
+
+        <button
+            onclick="showContent('letter', this)">
+            Letter
+        </button>
+
+    </nav>
+
+
+
+    <div class="content-box">
+
+
+        <div id="home" class="content active">
+
+            <div class="home-message">
+
+                <div class="big-heart">
+                    ♡
+                </div>
+
+                <h2>
+                    Welcome to Our Little Memory Corner 🌷
+                </h2>
+
+                <p>
+                    This is our little space for all the memories,
+                    random moments, laughter, pictures,
+                    stories, and everything in between.
+                </p>
+
+                <p>
+                    Maybe someday, when we're older and life gets busy,
+                    we can come back here and remember how happy,
+                    crazy, and young we were together.
+                </p>
+
+                <p>
+                    We may not remember every little detail someday,
+                    but at least we have this place to look back on.
+                </p>
+
+                <div class="quote">
+                    "Some moments become memories we carry forever." ♡
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= OUR MEMORIES ================= -->
+
+        <div id="memories" class="content">
+
+            <h2>📖 Our Memories</h2>
+
+            <p class="memory-intro">
+                Little moments, big memories, and everything in between. ♡
+            </p>
+
+
+
+            <!-- MEMORY 1 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="FG.jpg"
+                    alt="Our first complete gala">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 July 1, 2026
+                    </span>
+
+                    <h3>
+                        😂 Our First Complete Gala
+                    </h3>
+
+                    <p>
+                        Finally, kumpleto tayong magkakaibigan kasama si
+                        Mam Nhek! 🥹 This was our first gala na kompleto tayo,
+                        and grabe, umabot tayo ng <b>2 AM</b> bago nakauwi
+                        HAHAHA. We went to <b>Gala Park and Okada</b>,
+                        and kahit pagod na, sobrang worth it dahil
+                        kompleto tayo that day. ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 2 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="UKAY.jpg"
+                    alt="Ukay day at Mam Nhek's">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 July 4, 2026
+                    </span>
+
+                    <h3>
+                        👗 Ukay Day at Mam Nhek's
+                    </h3>
+
+                    <p>
+                        Pumunta tayo kila Mam Nhek para pumili ng mga damit
+                        na pinamimigay niya since nagde-declutter siya.
+                        Lilipad na kasi sila ni Pas Art papuntang America,
+                        kaya parang simpleng ukay day lang siya pero may
+                        sentimental value din. 🥹🤍
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 3 -->
+
+            <div class="memory-card special-memory">
+
+                <div class="memory-collage">
+
+                    <img
+                        src="SHARING.jpg"
+                        alt="Sharing moment">
+
+                    <img
+                        src="BOWLING.jpg"
+                        alt="Bowling">
+
+                    <img
+                        src="HOTPOT.jpg"
+                        alt="Hotpot">
+
+                    <img
+                        src="FOURCUTS.jpg"
+                        alt="Four cuts photos">
+
+                    <img
+                        src="CINE.jpg"
+                        alt="Cinema">
+
+                </div>
+
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 July 5, 2026
+                    </span>
+
+                    <h3>
+                        🎳🍲📸 A Day Full of Ganap
+                    </h3>
+
+                    <p>
+                        After Sunday service, nag Market Market tayo and
+                        grabe, ang daming ganap in one day! 😂 From
+                        <b>hotpot, sine, four-cuts pictures, hanggang bowling</b>,
+                        parang bawat stop may bagong memory. Sobrang saya
+                        ng araw na to kasi sama-sama tayo.
+                        Definitely one of those days na ang daming pictures
+                        kasi ang daming nangyari. ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 4 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="EASTWOOD.jpg"
+                    alt="Eastwood with Mam Nhek">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 July 16, 2026
+                    </span>
+
+                    <h3>
+                         Our Last Gala with Mam Nhek
+                    </h3>
+
+                    <p>
+                        Our last gala kasama si Mam Nhek. 🥹 We went to
+                        <b>Eastwood</b> and kumain lang tayo sa rotating
+                        Korean restaurant. Simpleng gala lang siya,
+                        pero special siya knowing na last gala na natin
+                        kasama si Mam Nhek before their move to America. 🤍
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 5 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="BINONDO.jpg"
+                    alt="Binondo after work">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 After Work — July 2026
+                    </span>
+
+                    <h3>
+                        🏮 Binondo After Work
+                    </h3>
+
+                    <p>
+                        After work, biglang gala sa Binondo HAHAHA. 😂
+                        Kaso ang ending, karamihan sa mga tindahan na gusto
+                        nating puntahan ay <b>sarado na</b> HAHAHAHA.
+                        Typical na gumala after work tapos pagdating don,
+                        sarado pala. 😂 Still, naging memory pa rin ket di masarap kinain don sa parang resto😂. ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 6 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="LAST MAM.jpg"
+                    alt="One Last Bonding Before We Meet Again Mam Nhek 🥹💗">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 August 1, 2026
+                    </span>
+
+                    <h3>
+                        🥹 One Last Bonding Before We Meet Again, Mam Nhek
+                    </h3>
+
+                    <p>
+                        Ito na yung last na bonding natin kasama si Mam Nhek bago
+                        sila lumipad kinabukasan. 🥹💗 Bago tayo makapasok sa
+                        Grand Hyatt, nag-antay muna tayo ng siguro 1 hour din
+                        HAHAHA, pero sulit naman kasi syempre, last bonding na
+                        natin iyon with Mam Nhek. ♡ Tapos yan din yung time na
+                        nagsisilabasan na yung bulutong ni Carol HAHAHAHA. 😂
+                        Kaya pala nahihilo siya, hindi dahil sa regla kundi dahil
+                        sa bulutong! HAHAHA. Tapos nung pauwi na tayo, grabe yung
+                        kabaliwan sa kalsada may sisigaw, may biglang tatakbo. 😂😭
+                        Last bonding talaga na hindi makakalimutan. 🥹💗
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 7 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="TREN.jpg"
+                    alt="Divisoria Adventure">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 August 15, 2026
+                    </span>
+
+                    <h3>
+                        🚆 Divisoria Adventure
+                    </h3>
+
+                    <p>
+                        Gumising tayo ng 5 AM tapos nakabyahe ng 8 AM na
+                        HAHAHAHA. Antayan pa more! 😂 Pagdating sa Divisoria,
+                        nagpasalamin sila Joan at Danica, habang si Ate Demi
+                        naman, umabot na sa Divisoria yung payroll niya HAHAHAHA.
+                        😂 Kahit nasa gala na parang nasa trabaho pa rin siya
+                        kasi pati doon nagtatrabaho pa rin. HAHAHA. Pero kahit
+                        puro antayan at kalokohan, naging memorable pa rin yung
+                        araw na 'to dahil madaming nabili si joan HAHAHHA. ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 8 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="SAMGYUP.jpg"
+                    alt="First Samgyup Treat ni Danica">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 September 1, 2026
+                    </span>
+
+                    <h3>
+                        🥓 First Samgyup Treat ni Danica
+                    </h3>
+
+                    <p>
+                        First time ni Danica manlibre ng samgyup🥹🥓 Early
+                        celebration to para sa birthday ni Mam Pat. ♡ Kaso hindi
+                        kumpleto that time kasi wala si Ate Demi dahil masakit
+                        ang tiyan niya, tapos si Joan naman wala rin dahil may
+                        date daw sila ng bebe niya. 😂 Pero kahit hindi kumpleto,
+                        nakapag-bonding pa rin tayo and nakakain ng masarap.
+                        HAHAHA. 💗
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEMORY 9 -->
+
+            <div class="memory-card">
+
+                <img
+                    src="PAT.jpg"
+                    alt="Mam Pat's Birthday Celebration">
+
+                <div class="memory-info">
+
+                    <span class="date">
+                        📅 September 2026
+                    </span>
+
+                    <h3>
+                        🎂 Mam Pat's Birthday Celebration
+                    </h3>
+
+                    <p>
+                        Nag-celebrate ulit tayo ng birthday ni Mam Pat, pero this
+                        time sa Dueñas tayo banda  kumain and this time, treat naman
+                        ni Mam Pat! 🥹🎂💗 Another simple celebration na naging
+                        special dahil sama-sama tayo, puro chikahan, tawanan, at
+                        syempre pagkain. 😂 Another memory na deserve ilagay dito
+                        sa memory book. ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= OUR PHOTOS ================= -->
+
+        <div id="photos" class="content">
+
+            <h2>📸 Our Photo Album</h2>
+
+            <div class="photo-gallery">
+
+
+                <!-- VIDEO -->
+
+                <div class="video-card">
+
+                    <video controls>
+
+                        <source
+                            src="UPSTAIRS.mp4"
+                            type="video/mp4">
+
+                        Your browser does not support the video tag.
+
+                    </video>
+
+                    <p>
+                        🎥 Chikahan & Belated Birthday Celebration ni Carol ♡
+                    </p>
+
+                </div>
+
+
+
+                <!-- M1 -->
+
+                <div class="photo">
+
+                    <img
+                        src="M1.jpg"
+                        alt="Memory M1"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        One of our little moments ♡
+                    </p>
+
+                </div>
+
+
+
+                <!-- M2 -->
+
+                <div class="photo">
+
+                    <img
+                        src="M2.jpg"
+                        alt="Memory M2"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Kantahan na may basher 😂
+                    </p>
+
+                </div>
+
+
+
+                <!-- M3 -->
+
+                <div class="photo">
+
+                    <img
+                        src="M3.jpg"
+                        alt="Memory M3"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Another memory to keep 🌷
+                    </p>
+
+                </div>
+
+
+
+                <!-- M4 -->
+
+                <div class="photo">
+
+                    <img
+                        src="M4.jpg"
+                        alt="Memory M4"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Happy memories ♡
+                    </p>
+
+                </div>
+
+
+
+                <!-- M5 -->
+
+                <div class="photo">
+
+                    <img
+                        src="M5.jpg"
+                        alt="Memory M5"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Despedida ni Mam Nhek ✨
+                    </p>
+
+                </div>
+
+
+
+                <!-- EXISTING PHOTOS -->
+
+                <div class="photo">
+
+                    <img
+                        src="M6.jpg"
+                        alt="Memory 1"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Happy Birthday Mam Pat ♡
+                    </p>
+
+                </div>
+
+
+                <div class="photo">
+
+                    <img
+                        src="M7.jpg"
+                        alt="Memory 2"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Just us being us 😂
+                    </p>
+
+                </div>
+
+
+                <div class="photo">
+
+                    <img
+                        src="M8.jpg"
+                        alt="Memory 3"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Lakan at Lakambini sa Dueñas 🌷
+                    </p>
+
+                </div>
+
+
+                <div class="photo">
+
+                    <img
+                        src="M9.png"
+                        alt="Memory 4"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Behind the scene ♡
+                    </p>
+
+                </div>
+
+
+                <div class="photo">
+
+                    <img
+                        src="M10.jpg"
+                        alt="Memory 5"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Sige lamon Lhean HAHAAHHA
+                    </p>
+
+                </div>
+
+
+                <div class="photo">
+
+                    <img
+                        src="M11.jpg"
+                        alt="Memory 6"
+                        onclick="openPhoto(this.src)">
+
+                    <p>
+                        Gala sa divisoria ✨
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div id="story" class="content">
+
+            <h2>🕰️ Our Story</h2>
+
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        🌱 The Beginning
+                    </h3>
+
+                    <p>
+                        Aminin nyo si Mam Nhek talaga
+                        nag connect sating lahat para matuloy tuloy yung mga gala HAHAHHA.
+                    </p>
+
+                </div>
+
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        🌸 We Became Closer
+                    </h3>
+
+                    <p>
+                        At dahil don nag start yung closeness ng bawat isa,
+                        tignan nyo oh khit nasa malayo na si Mam Nhek tuloy tuloy pa din pag gala ntin HAHAHA.
+                    </p>
+
+                </div>
+
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        😂 The Crazy Era
+                    </h3>
+
+                    <p>
+                        Ang dami nating CRAZY ERA girls, iba't ibang topak at kabaliwan HAHAHHA
+                    </p>
+
+                </div>
+
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        ❤️ Where We Are Now
+                    </h3>
+
+                    <p>
+                        Going strong to us, more chikas and kabaliwan ahead HAHAHAHA
+                    </p>
+
+                </div>
+
+
+
+                <div class="timeline-item">
+
+                    <h3>
+                        ✨ To Be Continued...
+                    </h3>
+
+                    <p>
+                        Our story isn't finished yet.
+                        There are still so many memories
+                        waiting to happen.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div id="letter" class="content">
+
+            <h2>💌 A Letter to Our Future Selves</h2>
+
+            <div class="letter">
+
+                <p>
+                    Dear Future Us,
+                </p>
+
+                <p>
+                    If you're reading this years from now,
+                    we hope you're doing well.
+                </p>
+
+                <p>
+                    Maybe life is already very different.
+                    Maybe we're working, graduating,
+                    traveling, or chasing our own dreams.
+                </p>
+
+                <p>
+                    But we hope that when you see this,
+                    you remember all the little moments
+                    we shared together.
+                </p>
+
+                <p>
+                    We hope we never forget the laughter,
+                    the random conversations, the adventures,
+                    and even the simple days that became special.
+                </p>
+
+                <p>
+                    No matter how much time passes,
+                    these memories will always be a part
+                    of our story.
+                </p>
+
+                <p>
+                    <b>
+                        "Grabe, ang saya pala natin dati." 🥹❤️
+                    </b>
+                </p>
+
+                <p>
+                    With love,<br>
+                    <b>Us ♡</b>
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- PHOTO ENLARGEMENT -->
+
+    <div
+        id="lightbox"
+        class="lightbox"
+        onclick="closePhoto()">
+
+        <span
+            class="close-lightbox"
+            onclick="closePhoto()">
+            ×
+        </span>
+
+        <img
+            id="lightbox-img"
+            src=""
+            alt="Large Photo"
+            onclick="event.stopPropagation()">
+
+    </div>
+
+
+
+    <footer>
+
+        ♡ Made with memories, laughter, and friendship ♡
+
+        <br><br>
+
+        <i>
+            "The best things in life become our favorite memories."
+        </i>
+
+    </footer>
+
+
+
+    <script>
+
+        function showContent(page, button) {
+
+            let contents =
+                document.querySelectorAll(".content");
+
+            contents.forEach(function(content) {
+
+                content.classList.remove("active");
+
+            });
+
+
+            document
+                .getElementById(page)
+                .classList.add("active");
+
+
+            let buttons =
+                document.querySelectorAll("nav button");
+
+            buttons.forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+        }
+
+
+
+        function openPhoto(imageSrc) {
+
+            document
+                .getElementById("lightbox-img")
+                .src = imageSrc;
+
+
+            document
+                .getElementById("lightbox")
+                .classList.add("active");
+
+        }
+
+
+
+        function closePhoto() {
+
+            document
+                .getElementById("lightbox")
+                .classList.remove("active");
+
+        }
+
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closePhoto();
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+</html>
